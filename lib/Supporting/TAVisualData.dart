@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -375,40 +377,46 @@ class TAVisualData
             left: 5.0,
             right: 5.0,
           ),
-          child: Text(
-            id,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.0,
+          child: Center(
+            child: Text(
+              id,
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+              ),
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: 5.0,
-            right: 5.0,
-          ),
-          child: Text(
-            company,
-            textAlign: TextAlign.start,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.0,
+        Center(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 5.0,
+              right: 5.0,
+            ),
+            child: Text(
+              company,
+              textAlign: TextAlign.start,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+              ),
             ),
           ),
         ),
-        Padding(
-          padding: EdgeInsets.only(
-            left: 5.0,
-            right: 5.0,
-          ),
-          child: Text(
-            profit,
-            textAlign: TextAlign.end,
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 16.0,
+        Center(
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 5.0,
+              right: 5.0,
+            ),
+            child: Text(
+              profit + '\$',
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 16.0,
+              ),
             ),
           ),
         )
@@ -416,4 +424,22 @@ class TAVisualData
     );
   }
 
+  static TableRow generateTableRow(String id)
+  {
+    Random random = new Random();
+    return staticTableRow(id, generateCompanyName(), ((random.nextDouble() * 100) - 50).toStringAsFixed(2));
+  }
+
+  static String generateCompanyName()
+  {
+    var names1 = ['Good', 'Great', 'The', 'Perfect', 'Old', 'New', 'Profitable', 'Interesting', 'Social'];
+    var names2 = [' Tech', ' Nature', ' Stock', ' Wave', ' Market', ' Things', ' Items', ' Socks', ' Animals', ' People', ' Insects'];
+    var names3 = [' SC', ' Part.', ' Corp.', ' S-Corp.', ' LLC'];
+
+    Random random = new Random();
+
+    return names1[random.nextInt(names1.length)]
+        + names2[random.nextInt(names2.length)]
+        + names3[random.nextInt(names3.length)];
+  }
 }
